@@ -1,0 +1,16 @@
+# Swift build artifacts
+.build/
+.swiftpm/
+
+# Assembled app bundle (produced by scripts/build.sh)
+CoffeeTray.app/
+
+# macOS metadata
+.DS_Store
+
+# Editor config
+.vscode/
+
+# Xcode (we don't use a project, but ignore stray files)
+*.xcodeproj/
+xcuserdata/
