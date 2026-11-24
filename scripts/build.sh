@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# Build CoffeeTray.app: compile with SwiftPM, assemble a minimal .app bundle,
+# Build "Coffee Tray.app": compile with SwiftPM, assemble a minimal .app bundle,
 # and ad-hoc codesign it. No .xcodeproj — everything stays text and diffable.
 set -euo pipefail
 
-APP_NAME="CoffeeTray"
+APP_NAME="Coffee Tray"
+EXE_NAME="CoffeeTray"  # SwiftPM target / executable name (no spaces allowed)
 BUILD_DIR=".build"
 BUNDLE_DIR="${APP_NAME}.app"
 
@@ -12,7 +13,7 @@ echo "==> swift build -c release"
 swift build -c release
 
 # Locate the built executable (arm64 on Apple Silicon; release config).
-EXE_PATH="$(swift build -c release --show-bin-path)/${APP_NAME}"
+EXE_PATH="$(swift build -c release --show-bin-path)/${EXE_NAME}"
 if [[ ! -x "${EXE_PATH}" ]]; then
     echo "error: built executable not found at ${EXE_PATH}" >&2
     exit 1
@@ -24,7 +25,7 @@ rm -rf "${BUNDLE_DIR}"
 mkdir -p "${BUNDLE_DIR}/Contents/MacOS"
 mkdir -p "${BUNDLE_DIR}/Contents/Resources"
 
-cp "${EXE_PATH}" "${BUNDLE_DIR}/Contents/MacOS/${APP_NAME}"
+cp "${EXE_PATH}" "${BUNDLE_DIR}/Contents/MacOS/${EXE_NAME}"
 cp "Resources/Info.plist" "${BUNDLE_DIR}/Contents/Info.plist"
 
 # 2b. Generate the app icon (the same ☕ glyph as the menu bar icon).
@@ -40,4 +41,4 @@ codesign --force --sign - --deep "${BUNDLE_DIR}"
 
 echo ""
 echo "Done: $(pwd)/${BUNDLE_DIR}"
-echo "Run with: open ${BUNDLE_DIR}"
+echo "Run with: open \"${BUNDLE_DIR}\""

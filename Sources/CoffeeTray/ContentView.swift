@@ -15,6 +15,7 @@ struct ContentView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 14) {
+                headerSection
                 statusSection
                 flagsSection
                 timeoutSection
@@ -25,6 +26,28 @@ struct ContentView: View {
             .padding(.vertical, 12)
         }
         .frame(width: 320, height: 440)
+    }
+
+    // MARK: - Header
+
+    private var headerSection: some View {
+        HStack(spacing: 8) {
+            Image(nsImage: NSApp.applicationIconImage)
+                .resizable()
+                .frame(width: 28, height: 28)
+            Text("Coffee Tray")
+                .font(.system(size: 15, weight: .semibold))
+            Spacer()
+            Text(appVersion)
+                .font(.system(size: 12))
+                .foregroundStyle(.secondary)
+        }
+        .padding(.horizontal, 4)
+    }
+
+    private var appVersion: String {
+        let v = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+        return v.map { "v\($0)" } ?? ""
     }
 
     // MARK: - Status
@@ -137,7 +160,7 @@ struct ContentView: View {
     private var quitSection: some View {
         SettingsList {
             SettingsRow(label: "") {
-                Button("Quit CoffeeTray", role: .destructive) {
+                Button("Quit Coffee Tray", role: .destructive) {
                     NSApp.terminate(nil)
                 }
                 .buttonStyle(.borderless)

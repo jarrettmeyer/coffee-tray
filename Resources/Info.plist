@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleName</key>
-    <string>CoffeeTray</string>
+    <string>Coffee Tray</string>
     <key>CFBundleDisplayName</key>
-    <string>CoffeeTray</string>
+    <string>Coffee Tray</string>
     <key>CFBundleIdentifier</key>
     <string>com.jarrettmeyer.coffeetray</string>
     <key>CFBundleExecutable</key>
@@ -17,7 +17,7 @@
     <key>CFBundleVersion</key>
     <string>1</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.0.0</string>
+    <string>1.0.1</string>
     <!-- Menu-bar-only: no Dock icon, no main window. -->
     <key>LSUIElement</key>
     <true/>

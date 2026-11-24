@@ -1,6 +1,6 @@
 import AppKit
 
-// CoffeeTray is a menu-bar-only app (LSUIElement). We boot a manual NSApplication
+// Coffee Tray is a menu-bar-only app (LSUIElement). We boot a manual NSApplication
 // instead of using @main/SwiftUI App so we control the status item, popover, and
 // the polling timer that drives the icon state.
 let app = NSApplication.shared

@@ -3,7 +3,7 @@
 .swiftpm/
 
 # Assembled app bundle (produced by scripts/build.sh)
-CoffeeTray.app/
+Coffee Tray.app/
 
 # macOS metadata
 .DS_Store
