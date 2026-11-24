@@ -27,6 +27,13 @@ mkdir -p "${BUNDLE_DIR}/Contents/Resources"
 cp "${EXE_PATH}" "${BUNDLE_DIR}/Contents/MacOS/${APP_NAME}"
 cp "Resources/Info.plist" "${BUNDLE_DIR}/Contents/Info.plist"
 
+# 2b. Generate the app icon (the same ☕ glyph as the menu bar icon).
+echo "==> generating AppIcon.icns"
+ICONSET_DIR="$(mktemp -d)/AppIcon.iconset"
+swift scripts/make-icon.swift "${ICONSET_DIR}"
+iconutil -c icns "${ICONSET_DIR}" -o "${BUNDLE_DIR}/Contents/Resources/AppIcon.icns"
+rm -rf "$(dirname "${ICONSET_DIR}")"
+
 # 3. Ad-hoc codesign so the bundle is treated as an app (SMAppService needs this).
 echo "==> codesign (ad-hoc)"
 codesign --force --sign - --deep "${BUNDLE_DIR}"
